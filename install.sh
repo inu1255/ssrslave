@@ -68,6 +68,7 @@ if [ "$openhttp" == "y" ];then
 	cat > /etc/supervisord.d/ssrhttp.ini <<EOF
 [program:ssrhttp]
 command = /usr/bin/python $cwd/http.py $account $password $port
+directory =  $cwd
 autostart = true
 autoresart = true
 startsecs=10
