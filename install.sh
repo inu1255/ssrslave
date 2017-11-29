@@ -84,6 +84,9 @@ stdout_logfile = $cwd/http.log
 EOF
 	systemctl restart supervisord.service
 	echo "http://"`curl ifconfig.me 2>/dev/null`":8080"
+else
+	rm /etc/supervisord.d/ssrhttp.ini 2>&1 > /dev/null
+	systemctl restart supervisord.service
 fi
 
 yum install -y net-tools
