@@ -1,8 +1,13 @@
 #!/bin/bash
 
 def_key=aW51MTI1NS5jbjo5MTgy
-def_account=admin
-def_password=123456
+
+curl ifconfig.me
+
+if [ `id -u` -ne 0 ];then  
+    echo "需要root权限" 
+	exit 1
+fi 
 
 function CheckAuth(){
 	echo "验证授权"
@@ -78,6 +83,7 @@ stderr_logfile = $cwd/http.log
 stdout_logfile = $cwd/http.log
 EOF
 	systemctl restart supervisord.service
+	echo "http://"`curl ifconfig.me 2>/dev/null`":8080"
 fi
 
 yum install -y net-tools
