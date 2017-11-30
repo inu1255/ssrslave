@@ -1,7 +1,5 @@
 #!/bin/bash
 
-curl ifconfig.me
-
 if [ `id -u` -ne 0 ];then  
     echo "需要root权限" 
 	exit 1
