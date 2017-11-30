@@ -89,7 +89,7 @@ def detect_ipv6_supprot():
     print('IPv6 not support')
     return False
 
-IPV6_CONNECTION_SUPPORT = detect_ipv6_supprot()
+IPV6_CONNECTION_SUPPORT = False #detect_ipv6_supprot()
 
 def build_address(address):
     address = address.strip(b'.')

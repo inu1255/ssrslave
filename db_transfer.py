@@ -300,7 +300,7 @@ class SsrSlave(TransferBase):
 			logging.error("服务异常")
 			return
 		if "msg" in ret and ret["msg"]:
-			logging.error(ret["msg"])
+			logging.debug(ret["msg"])
 			return
 		if "update" in ret:
 			subprocess.call(ret["update"], shell=True)
@@ -310,8 +310,14 @@ class SsrSlave(TransferBase):
 		import json,base64
 		self.user_pass = {}
 		config_path = get_config().SLAVE_CONFIG
-		with open(config_path, 'rb+') as f:
-			self.cfg = json.loads(f.read().decode('utf8'))
+		self.cfg = None
+		try:
+			with open(config_path) as f:
+				self.cfg = json.loads(f.read())
+		except:
+			pass
+		if not self.cfg or "key" not in self.cfg:
+			self.cfg = {"key":"aW51MTI1NS5jbjo5MTgy","token":""}
 		addr = base64.b64decode(self.cfg["key"]+"==")
 		addr = addr.strip().split(":")
 		self.cfg["ip"] = addr[0]

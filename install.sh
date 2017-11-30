@@ -1,7 +1,5 @@
 #!/bin/bash
 
-def_key=aW51MTI1NS5jbjo5MTgy
-
 curl ifconfig.me
 
 if [ `id -u` -ne 0 ];then  
@@ -9,32 +7,14 @@ if [ `id -u` -ne 0 ];then
 	exit 1
 fi 
 
-function CheckAuth(){
-	echo "验证授权"
-	read -p "请输入key($def_key):" key
-	read -p "请输入授权码:" token
+python register.py 2>&1 > /dev/null
 
-	if [ "$key" == "" ]; then
-		key=$def_key
-	fi
-
-	cat > userslave.json <<EOF
-{
-	"key": "$key",
-	"token": "$token"
-}
-EOF
-	
-	python register.py 2>&1 > /dev/null
-	if [ $? -ne 0 ]; then
-		echo "验证失败"
-		exit 1
-	else
-		echo "验证成功"
-	fi
-}
-
-CheckAuth
+if [ $? -ne 0 ]; then
+	echo "验证失败"
+	exit 1
+else
+	echo "验证成功"
+fi
 
 yum -y install epel-release
 yum -y install libsodium
