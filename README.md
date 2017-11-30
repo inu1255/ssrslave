@@ -1,105 +1,39 @@
-ShadowsocksR
-===========
+Base On https://github.com/shadowsocksr/shadowsocksr.git
 
-[![Build Status]][Travis CI]
+目前只支持了centos一键安装
 
-A fast tunnel proxy that helps you bypass firewalls.
+## 1. 安装方法
 
-Server
-------
+``` bash
+# 没有安装git的?
+yum install -y git
+```
+![](images/1.png)
+``` bash
+git clone https://github.com/inu1255/ssrslave.git
+```
+![](images/2.png)
+``` bash
+cd ssrslave && bash install.sh
+# 根据提示输入，不知道的直接回车
+```
+![](images/3.png)
+## 2. 使用
+打开安装成功上面一行的网址
+![](images/4.png)
+输入账号密码，默认账号`admin`,密码`123456`
+![](images/5.png)
+账号管理，支持
+1. 添加删除修改用户
+2. 限速(单位Kb)
+3. 限制流量(单位Gb)
+4. 设置过期时间
+5. 限制登录设备(最少为2个，设置1个无造成无法连接，在下才疏学浅，原因不明)
+![](images/6.png)
 
-### Install
+查看账号信息
 
-Debian / Ubuntu:
-
-    apt-get install git
-    git clone https://github.com/shadowsocksr/shadowsocksr.git
-
-CentOS:
-
-    yum install git
-    git clone https://github.com/shadowsocksr/shadowsocksr.git
-
-Windows:
-
-    git clone https://github.com/shadowsocksr/shadowsocksr.git
-
-### Usage for single user on linux platform
-
-If you clone it into "~/shadowsocksr"  
-move to "~/shadowsocksr", then run:
-
-    bash initcfg.sh
-
-move to "~/shadowsocksr/shadowsocks", then run:
-
-    python server.py -p 443 -k password -m aes-128-cfb -O auth_aes128_md5 -o tls1.2_ticket_auth_compatible
-
-Check all the options via `-h`.
-
-You can also use a configuration file instead (recommend), move to "~/shadowsocksr" and edit the file "user-config.json", then move to "~/shadowsocksr/shadowsocks" again, just run:
-
-    python server.py
-
-To run in the background:
-
-    ./logrun.sh
-
-To stop:
-
-    ./stop.sh
-
-To monitor the log:
-
-    ./tail.sh
-
-
-Client
-------
-
-* [Windows] / [macOS]
-* [Android] / [iOS]
-* [OpenWRT]
-
-Use GUI clients on your local PC/phones. Check the README of your client
-for more information.
-
-Documentation
--------------
-
-You can find all the documentation in the [Wiki].
-
-License
--------
-
-Copyright 2015 clowwindy
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may
-not use this file except in compliance with the License. You may obtain
-a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.
-
-Bugs and Issues
-----------------
-
-* [Issue Tracker]
-
-
-
-[Android]:           https://github.com/shadowsocksr/shadowsocksr-android
-[Build Status]:      https://travis-ci.org/shadowsocksr/shadowsocksr.svg?branch=manyuser
-[Debian sid]:        https://packages.debian.org/unstable/python/shadowsocks
-[iOS]:               https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help
-[Issue Tracker]:     https://github.com/shadowsocksr/shadowsocksr/issues?state=open
-[OpenWRT]:           https://github.com/shadowsocks/openwrt-shadowsocks
-[macOS]:             https://github.com/shadowsocksr/ShadowsocksX-NG
-[Travis CI]:         https://travis-ci.org/shadowsocksr/shadowsocksr
-[Windows]:           https://github.com/shadowsocksr/shadowsocksr-csharp
-[Wiki]:              https://github.com/breakwa11/shadowsocks-rss/wiki
+1. 本页面不需要登录
+2. 显示ssr连接信息，ssr二维码
+3. 显示到期时间
+4. 显示流量信息

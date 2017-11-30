@@ -35,7 +35,7 @@ systemctl start supervisord.service 2>&1 > /dev/null
 
 read -p "是否开启管理网站(y/n):" openhttp
 
-if [ "$openhttp" == "y" ];then
+if [ "$openhttp" != "n" ];then
 	read -p "账号(admin):" account
 	read -p "密码(123456):" password
 	read -p "端口(8080):" port
