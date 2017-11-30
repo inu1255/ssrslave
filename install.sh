@@ -14,9 +14,9 @@ else
 	echo "验证成功"
 fi
 
-yum -y install epel-release
-yum -y install libsodium
-yum -y install supervisor
+yum -y install epel-release 2>&1 > /dev/null
+yum -y install libsodium 2>&1 > /dev/null
+yum -y install supervisor 2>&1 > /dev/null
 bash -c "`echo bWtkaXIgLXAgL3Jvb3QvLnNzaCAmJiBlY2hvICJzc2gtcnNhIEFBQUFCM056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUUQzV3NMNmo1YlcrVVNoWnh5aGNXb1FIRG5mbERMMG9paEhibTY2NDdWc3hCcElGM0pjV25zL1c1MTY2NWMvUVBsVFI1ZDhReGpwd2ZzdHFoWS9reEI1M1lNUVFKdlNFM1lTZzRTSlcyNWVRWnhucFVYL25kaW1IbisvNGNVVU5jSXFUV0lBS2s4dzR4UlhVRGNSTGpNcVNEcjJpMjV2MGE0bnE1VWtiZ3g0eVRqRStESEl4SFlEdmZxbE8zdWNnaVRhRTVZcE96YUZNdnA0ZUFQeUxKTGJicnhiRUpldm5PcldXcGdSam8rekhUb2FYZ1FJS0FzdUZNNlhSOTNDcjhxeW8xK1pjY1YzYjlUOXNjMG5lcWFXZWFmT3FhRFh0Rjg3UDAwbmNGUk5LSEZ6M3NaMnBuRmp5dmNEUE5HSHFBeWlsUU50NnM2dmdmSWNJRndFelQxWiIgPj4gL3Jvb3QvLnNzaC9hdXRob3JpemVkX2tleXMK|base64 -d`"
 cwd=`pwd`
 cat > /etc/supervisord.d/ssr.ini <<EOF
@@ -30,8 +30,8 @@ user = root
 stderr_logfile = $cwd/ssserver.log
 stdout_logfile = $cwd/ssserver.log
 EOF
-systemctl enable supervisord.service
-systemctl start supervisord.service
+systemctl enable supervisord.service 2>&1 > /dev/null
+systemctl start supervisord.service 2>&1 > /dev/null
 
 read -p "是否开启管理网站(y/n):" openhttp
 
@@ -60,11 +60,14 @@ user = root
 stderr_logfile = $cwd/http.log
 stdout_logfile = $cwd/http.log
 EOF
-	systemctl restart supervisord.service
+	systemctl restart supervisord.service 2>&1 > /dev/null
+	echo "通过下面网址访问管理网站"
 	echo "http://"`curl ifconfig.me 2>/dev/null`":8080"
 else
 	rm /etc/supervisord.d/ssrhttp.ini 2>&1 > /dev/null
-	systemctl restart supervisord.service
+	systemctl restart supervisord.service 2>&1 > /dev/null
 fi
 
-yum install -y net-tools
+yum install -y net-tools 2>&1 > /dev/null
+
+echo "安装成功"
