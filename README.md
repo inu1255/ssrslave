@@ -17,14 +17,17 @@ git clone https://github.com/inu1255/ssrslave.git
 cd ssrslave && bash install.sh
 # 根据提示输入，不知道的直接回车
 ```
-![](images/3.png)
+![](images/3.png)  
+
 ## 2. 使用
 打开安装成功上面一行的网址  
 
-![](images/4.png)
+![](images/4.png)  
+
 输入账号密码，默认账号`admin`,密码`123456`  
 
-![](images/5.png)
+![](images/5.png)  
+
 账号管理，支持  
 1. 添加删除修改用户
 2. 限速(单位Kb)
