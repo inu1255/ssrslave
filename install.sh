@@ -7,7 +7,7 @@ if [ `id -u` -ne 0 ];then
 	exit 1
 fi 
 
-python register.py 2>&1 > /dev/null
+python register.py
 
 if [ $? -ne 0 ]; then
 	echo "验证失败"
