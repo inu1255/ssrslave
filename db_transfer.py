@@ -284,6 +284,7 @@ class SsrSlave(TransferBase):
 	def request(self, path, body=None):
 		import json
 		url = "https://"+self.cfg["ip"] + ":" + self.cfg["port"]+"/api/node"+path+"?token="+self.cfg["token"]
+		print url
 		# client = httplib.HTTPConnection(self.cfg["ip"], self.cfg["port"], timeout=30)
 		ret = None
 		try:
