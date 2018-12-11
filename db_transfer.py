@@ -290,7 +290,7 @@ class SsrSlave(TransferBase):
 			if body:
 				params = urllib.urlencode(body)
 				headers = {'Content-type': 'application/x-www-form-urlencoded'}
-				request = urllib2.Request(url, data, headers)
+				request = urllib2.Request(url, params, headers)
 				response = urllib2.urlopen(request)
 				# client.request("POST", "/api/node"+path+"?token="+self.cfg["token"], params, headers)
 			else:
