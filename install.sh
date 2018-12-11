@@ -32,6 +32,8 @@ stdout_logfile = $cwd/ssserver.log
 EOF
 systemctl enable supervisord.service 2>&1 > /dev/null
 systemctl start supervisord.service 2>&1 > /dev/null
+systemctl stop firewalld.service 2>&1 > /dev/null
+systemctl disable firewalld.service 2>&1 > /dev/null
 
 read -p "是否开启管理网站(y/n):" openhttp
 
