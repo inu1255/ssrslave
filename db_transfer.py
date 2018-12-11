@@ -10,6 +10,7 @@ from shadowsocks import common, shell, lru_cache, obfs
 from configloader import load_config, get_config
 import importloader
 import httplib, urllib
+import urllib2
 import subprocess
 
 switchrule = None
@@ -282,16 +283,20 @@ class TransferBase(object):
 class SsrSlave(TransferBase):
 	def request(self, path, body=None):
 		import json
-		client = httplib.HTTPConnection(self.cfg["ip"], self.cfg["port"], timeout=30)
+		url = "https://"+self.cfg["ip"] + ":" + self.cfg["port"]+"/api/node"+path+"?token="+self.cfg["token"]
+		# client = httplib.HTTPConnection(self.cfg["ip"], self.cfg["port"], timeout=30)
 		ret = None
 		try:
 			if body:
 				params = urllib.urlencode(body)
 				headers = {'Content-type': 'application/x-www-form-urlencoded'}
-				client.request("POST", "/api/node"+path+"?token="+self.cfg["token"], params, headers)
+				request = urllib2.Request(url, data, headers)
+				response = urllib2.urlopen(request)
+				# client.request("POST", "/api/node"+path+"?token="+self.cfg["token"], params, headers)
 			else:
-				client.request("GET", "/api/node"+path+"?token="+self.cfg["token"])
-			response = client.getresponse()
+				response = urllib2.urlopen(url)
+				# client.request("GET", "/api/node"+path+"?token="+self.cfg["token"])
+			# response = client.getresponse()
 			text = response.read().decode('utf8')
 			ret = json.loads(text)
 		except Exception,e:
