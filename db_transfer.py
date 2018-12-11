@@ -283,7 +283,7 @@ class TransferBase(object):
 class SsrSlave(TransferBase):
 	def request(self, path, body=None):
 		import json
-		url = "https://"+self.cfg["ip"] + ":" + self.cfg["port"]+"/api/node"+path+"?token="+self.cfg["token"]
+		url = "https://"+self.cfg["ip"] + self.cfg["port"]+"/api/node"+path+"?token="+self.cfg["token"]
 		# client = httplib.HTTPConnection(self.cfg["ip"], self.cfg["port"], timeout=30)
 		print url
 		ret = None
@@ -328,7 +328,7 @@ class SsrSlave(TransferBase):
 		addr = addr.strip().split(":")
 		self.cfg["ip"] = addr[0]
 		if len(addr)>1:
-			self.cfg["port"] = addr[1]
+			self.cfg["port"] = ":" + addr[1]
 		else:
 			self.cfg["port"] = ""
 		logging.debug(u"授权码:"+self.cfg["token"])
