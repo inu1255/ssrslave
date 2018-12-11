@@ -316,6 +316,7 @@ class SsrSlave(TransferBase):
 		import json,base64
 		self.user_pass = {}
 		config_path = get_config().SLAVE_CONFIG
+		print config_path
 		self.cfg = None
 		try:
 			with open(config_path) as f:
