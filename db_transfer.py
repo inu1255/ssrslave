@@ -284,7 +284,6 @@ class SsrSlave(TransferBase):
 	def request(self, path, body=None):
 		import json
 		url = "https://"+self.cfg["ip"] + ":" + self.cfg["port"]+"/api/node"+path+"?token="+self.cfg["token"]
-		print url
 		# client = httplib.HTTPConnection(self.cfg["ip"], self.cfg["port"], timeout=30)
 		ret = None
 		try:
@@ -316,7 +315,6 @@ class SsrSlave(TransferBase):
 		import json,base64
 		self.user_pass = {}
 		config_path = get_config().SLAVE_CONFIG
-		print config_path
 		self.cfg = None
 		try:
 			with open(config_path) as f:
@@ -324,7 +322,7 @@ class SsrSlave(TransferBase):
 		except:
 			pass
 		if not self.cfg or "key" not in self.cfg:
-			self.cfg = {"key":"aW51MTI1NS5jbjo5MTgy","token":""}
+			self.cfg = {"key":"c3NyLmludTEyNTUuY24K","token":""}
 		addr = base64.b64decode(self.cfg["key"]+"==")
 		addr = addr.strip().split(":")
 		self.cfg["ip"] = addr[0]
