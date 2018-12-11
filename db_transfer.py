@@ -326,7 +326,10 @@ class SsrSlave(TransferBase):
 		addr = base64.b64decode(self.cfg["key"]+"==")
 		addr = addr.strip().split(":")
 		self.cfg["ip"] = addr[0]
-		self.cfg["port"] = addr[1]
+		if len(addr)>1:
+			self.cfg["port"] = addr[1]
+		else:
+			self.cfg["port"] = ""
 		logging.debug(u"授权码:"+self.cfg["token"])
 	
 	def update_all_user(self, dt_transfer):
